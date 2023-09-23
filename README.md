@@ -1,6 +1,6 @@
-# CUTILS
+# CUtils
 
-My personal C utilities library for my C/C++ programs
+My personal C Utilities Library for my C/C++ programs
 
 To better understand my codes, read the README.md at [this link](https://github.com/Bacagine/Bacagine)
 
@@ -26,6 +26,7 @@ To better understand my codes, read the README.md at [this link](https://github.
  */
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <math.h>
 #include "cutils/cutils.h"
 #include "cutils/file.h"
@@ -51,6 +52,8 @@ int main(int argc, char **argv)
   if(!bFileExist(pszFileName))
   {
     fprintf(stderr, "E: %s no such file or directory!\n", pszFileName);
+
+    exit(EXIT_FAILURE);
   }
   
   printf("The makefile have %.2lf KB\n", dByte2KiloByte(lGetFileLen(fpFile, pszFileName)));
@@ -68,7 +71,6 @@ double dByte2GigaByte(long lBytes)
 {
   return (double) lBytes / pow(1024.0, 3);
 }
-
 
 ```
 
