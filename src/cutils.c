@@ -26,13 +26,16 @@ bool bTerminalSupportColors(void)
 
 bool bUserIsRoot(void)
 {
+#ifndef _WIN32
   uid_t uidEuid = geteuid();
 
   if(uidEuid == 0)
   {
     return true;
   }
-
+#else
+  return true;
+#endif
   return false;
 }
 
