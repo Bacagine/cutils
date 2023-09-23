@@ -38,16 +38,6 @@
  ******************************************************************************/
 
 /**
- * Program information defines
- */
-#define VERSION        "1.0"
-#define DESCRIPTION    "This software is a C Utilities Library"
-#define COPYRIGHT      "Copyright (C) 2023"
-#define DEV_NAME       "Gustavo Bacagine"
-#define DEV_MAIL       "gustavo.bacagine@protonmail.com"
-#define GITHUB_URL     "https://www.github.com/Gustavo Bacagine/cutils"
-
-/**
  * This macro is used to remove
  * unused warnings during the
  * compilation.
