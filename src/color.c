@@ -34,13 +34,13 @@ bool bPrintColored(const TextColors eTextColors,
   
   memset(szColoredStr, 0, sizeof(szColoredStr));
   
+  va_start(args, kpszFmt);
+
   if(!bTerminalSupportColors())
   {
     vfprintf(stdout, kpszFmt, args);
     return false;
-  }
-
-  va_start(args, kpszFmt);
+  }  
   
   vMakeColoredText(szColoredStr, kpszFmt, bBold, eTextColors);
   

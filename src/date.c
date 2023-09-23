@@ -8,7 +8,9 @@
  * Date: 21/09/2023
  */
 
+#include <stdlib.h>
 #include "cutils/date.h"
+#include "cutils/string.h"
 
 bool bYearIsLeapYear(int iYear)
 {
@@ -23,7 +25,7 @@ bool bYearIsLeapYear(int iYear)
   return false;
 }
 
-bool bDateIsValid(Date *pstDate)
+bool bDateIsValid(STRUCT_DATE *pstDate)
 {
   /**
    * Validate the day
@@ -98,7 +100,7 @@ bool bDateIsValid(Date *pstDate)
   return false;
 }
 
-bool bDatesIsEqual(Date *pstDateOne, Date *pstDateTwo)
+bool bDatesIsEqual(STRUCT_DATE *pstDateOne, STRUCT_DATE *pstDateTwo)
 {
   if(pstDateOne->iDay == pstDateTwo->iDay &&
       pstDateOne->iMonth == pstDateTwo->iMonth &&
@@ -109,27 +111,77 @@ bool bDatesIsEqual(Date *pstDateOne, Date *pstDateTwo)
 
   return false;
 }
+ENUM_OTPFMT eMatchOutputFormat(const char *kpszFmt){
+  if ( bStrIsEmpty(kpszFmt) )
+    return atoi(kpszDateFormat[FMTERROR]);
 
-void vFormatDate(const Date *kpstDate,
-                 const char *kpszFmt,
-                 char **szOutput)
-{
-  if(!strcmp(kpszFmt, "dd/mm/aaaa"))
-  {
-    sprintf(*szOutput, "%02d/%02d/%04d", kpstDate->iDay,
-                                         kpstDate->iMonth,
-                                         kpstDate->iYear);
-    return;
-  }
-
-  if(!strcmp(kpszFmt, "aaaa/mm/dd"))
-  {
-    sprintf(*szOutput, "%04d/%02d/%02d", kpstDate->iYear,
-                                         kpstDate->iMonth,
-                                         kpstDate->iDay);
-    return;
-  }
+  if ( !strcasecmp(kpszFmt, kpszDateFormat[DDMMAA]) )
+    return DDMMAA;
+  else if ( !strcasecmp(kpszFmt, kpszDateFormat[DDMMAAAA]) )
+    return DDMMAAAA;
+  else if ( !strcasecmp(kpszFmt, kpszDateFormat[AAAAMMDD]) )
+    return AAAAMMDD;
+  else if ( !strcasecmp(kpszFmt, kpszDateFormat[AAMMDD]  ) )
+    return AAMMDD;
+  else if ( !strcasecmp(kpszFmt, kpszDateFormat[MMDDAAAA]) )
+    return MMDDAAAA;
+  else if ( !strcasecmp(kpszFmt, kpszDateFormat[MMDDAA]  ) )
+    return MMDDAA;
   
-  *szOutput = NULL;
+  return atoi(kpszDateFormat[FMTERROR]);
+}
+
+void vFormatDate(const STRUCT_DATE *kpstDate,
+                 const char *kpszFmt,
+                 char **szOutput,
+                 char *pchDlm)
+{
+  ENUM_OTPFMT eOtpFmt;
+
+  if( *szOutput == NULL || bStrIsEmpty(pchDlm) ) 
+    return;
+
+  switch ((eOtpFmt = eMatchOutputFormat(kpszFmt))){
+    case DDMMAAAA:
+    case DDMMAA:
+      sprintf(*szOutput, 
+    "%02d%c%02d%c%0*d",
+        kpstDate->iDay,
+        *pchDlm,
+        kpstDate->iMonth,
+        *pchDlm,
+        eOtpFmt == DDMMAA ? 2 : 4,
+        eOtpFmt == DDMMAA ? kpstDate->iYear%100 : kpstDate->iYear
+      );
+      break;    
+    case AAAAMMDD:
+    case AAMMDD:
+     sprintf(*szOutput, 
+    "%0*d%c%02d%c%02d",
+        eOtpFmt == AAMMDD ? 2 : 4 ,
+        eOtpFmt == AAMMDD ? kpstDate->iYear%100 : kpstDate->iYear,
+        *pchDlm,
+        kpstDate->iMonth,
+        *pchDlm,
+        kpstDate->iDay
+      );
+      break;
+    case MMDDAAAA:
+    case MMDDAA:
+     sprintf(*szOutput, 
+    "%02d%c%02d%c%0*d",
+        kpstDate->iMonth,
+        *pchDlm,
+        kpstDate->iDay,
+        *pchDlm,
+        eOtpFmt == MMDDAA ? 2 : 4,
+        eOtpFmt == MMDDAA ? kpstDate->iYear%100 : kpstDate->iYear
+      );
+      break;
+    case FMTERROR:
+    default:
+      *szOutput = NULL;
+      return;
+  }
 }
 

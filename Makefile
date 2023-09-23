@@ -6,7 +6,11 @@
 # 
 # Date: dd/mm/aaaa
 
+ifndef _WIN32
 TARGET     = libcutils.so
+else 
+TARGET     = libcutils.dll
+endif
 
 # Directories
 SRCDIR     = src
@@ -27,8 +31,14 @@ LIB        = $(LIBDIR)/$(TARGET)
 
 # Compilation flags
 LDFLAGS    = -L $(LIBDIR)
-LDLIBS     = -lm -pthread
-CFLAGS     = -I $(INCDIR) -Wall -Wextra
+LDLIBS     = -lm
+CFLAGS     = -I $(INCDIR) -Wall -Wextra 
+ifdef _WIN32
+CFLAGS     += -mwindows
+LDLIBS     += -lwinpthread
+else
+LDLIBS     += -pthread
+endif
 DEBUGFLAGS = -g -O0 -DDEBUG_COMPILATION
 
 # Compiler
@@ -60,14 +70,18 @@ clean:
 	rm -rvf $(OBJDIR)
 
 install: all
+ifndef _WIN32
 	./install.sh
+else
+	./install_windows.sh
+endif
 
 uninstall:
 	./uninstall.sh
 
 test: all $(BINDIR)
-	$(CC) -o $(BINDIR)/file_len $(TESTDIR)/file_len.c $(CFLAGS) $(LDFLAGS) -lm -lcutils
-	$(CC) -o $(BINDIR)/getstr $(TESTDIR)/getstr.c $(CFLAGS) $(LDFLAGS) -lm -lcutils
+	$(CC) -o $(BINDIR)/file_len $(TESTDIR)/file_len.c $(CFLAGS) $(LDFLAGS) -lm -llibcutils
+	$(CC) -o $(BINDIR)/getstr $(TESTDIR)/getstr.c $(CFLAGS) $(LDFLAGS) -lm -llibcutils
 
 distclean: clean
 	rm -rvf $(LIBDIR)

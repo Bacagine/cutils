@@ -13,20 +13,53 @@
 
 #include <stdio.h>
 #include <string.h>
-#include <time.h>
+#ifndef _WIN32
+  #include <time.h>
+#else
+  #include <sys\timeb.h> 
+#endif
 #include <stdbool.h>
+
+const char *kpszDateFormat[8] = {
+                                  "ddmmaa",
+                                  "ddmmaaaa",
+                                  "aaaammdd",
+                                  "aammdd",
+                                  "mmddaaaa",
+                                  "mmddaa",
+                                  "-99"
+                                };
+// const char *kpszDDMMAA  = "ddmmaa";
+// const char *kpszDDMMAAAA= "ddmmaaaa";
+// const char *kpszAAAAMMDD= "aaaammdd";
+// const char *kpszAAMMDD  = "aammdd";
+// const char *kpszMMDDAAAA= "mmddaaaa";
+// const char *kpszMMDDAA  = "mmddaa";
+// const char *kpszERROR   = "-99";
+
+typedef enum ENUM_OTPFMT{
+  DDMMAA=0,
+  DDMMAAAA,
+  AAAAMMDD,
+  AAMMDD,
+  MMDDAAAA,
+  MMDDAA,
+  FMTERROR, 
+}ENUM_OTPFMT;
+
+ENUM_OTPFMT eMatchOutputFormat(const char *kpszFmt);
 
 /**
  * This structure 
  * that represents
  * a date.
  */
-typedef struct Date
+typedef struct STRUCT_DATE
 {
   int iDay;
   int iMonth;
   int iYear;
-} Date, *PDate;
+} STRUCT_DATE, *PSTRUCT_DATE;
 
 /**
  * Week days
@@ -56,20 +89,21 @@ bool bYearIsLeapYear(int iYear);
 /**
  * Validate a date
  */
-bool bDateIsValid(Date *pstDate);
+bool bDateIsValid(STRUCT_DATE *pstDate);
 
 /**
  * Check if the dates are the same
  */
-bool bDatesIsEqual(Date *pstDateOne, Date *pstDateTwo);
+bool bDatesIsEqual(STRUCT_DATE *pstDateOne, STRUCT_DATE *pstDateTwo);
 
 /**
  * Save the formated date in szOutput, if szOutput is
  * NULL, the format is invalid.
  */
-void vFormatDate(const Date *kpstDate,
+void vFormatDate(const STRUCT_DATE *kpstDate,
                  const char *kpszFmt,
-                 char **szOutput);
+                 char **szOutput,
+                 char *pchDlm);
 
 #endif /* _CUTILS_DATE_H_  */
 

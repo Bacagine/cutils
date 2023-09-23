@@ -10,6 +10,7 @@
 
 #include "cutils/dir.h"
 
+#ifndef _WIN32
 bool bPathIsDir(const char *kpszPath)
 {
   struct stat stPath;
@@ -87,4 +88,47 @@ bool bRmDir(const char *kpszDirName)
 
   return true;
 }
+#else
+bool bPathIsDir(const char *kpszPath)
+{
+    return true;
 
+}
+
+bool bOpenDir(DIR **ppDir, const char *kpszDirName)
+{
+
+
+  return true;
+}
+
+void vListDir(DIR *pDir)
+{
+  return;
+}
+
+void vTreeDir(DIR *pDir)
+{
+  return;
+}
+
+bool bCloseDir(DIR **ppDir)
+{
+
+    return true;
+
+}
+
+int iMkDir(const char *kpszDirName,
+           const int iUmask)
+{
+
+  return 0;
+}
+
+bool bRmDir(const char *kpszDirName)
+{
+ 
+  return true;
+}
+#endif

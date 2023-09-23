@@ -18,8 +18,10 @@ void vFgets(char *szString, int iLength, FILE *fpStream)
   fgets(szString, iLength, fpStream);
   setbuf(fpStream, NULL);
 
-  vRemoveEnter(szString);
+  vRemoveNewLines(szString);
 }
+
+
 
 
 

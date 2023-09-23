@@ -10,7 +10,7 @@
 
 #include "cutils/time.h"
 
-bool bTimeIsValid(Time *pstTime)
+bool bTimeIsValid(STRUCT_TIME *pstTime)
 {
   if(pstTime->iHour < 0 || pstTime->iHour > 23)
   {
@@ -30,7 +30,7 @@ bool bTimeIsValid(Time *pstTime)
   return true;
 }
 
-bool bTimeIsEqual(Time *pstTimeOne, Time *pstTimeTwo)
+bool bTimeIsEqual(STRUCT_TIME *pstTimeOne, STRUCT_TIME *pstTimeTwo)
 {
   if(pstTimeOne->iHour == pstTimeTwo->iHour && 
       pstTimeOne->iMinute == pstTimeTwo->iMinute &&
@@ -42,7 +42,7 @@ bool bTimeIsEqual(Time *pstTimeOne, Time *pstTimeTwo)
   return false;
 }
 
-void vFormatTime(const Time *kpstTime,
+void vFormatTime(const STRUCT_TIME *kpstTime,
                  const char *kpszFmt,
                  char **szOutput)
 {

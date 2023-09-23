@@ -16,27 +16,27 @@
 #include <time.h>
 #include <stdbool.h>
 
-typedef struct Time
+typedef struct STRUCT_TIME
 {
   int iHour;
   int iMinute;
   int iSecond;
-} Time, *PTime;
+} STRUCT_TIME, *PSTRUCT_TIME;
 
 /**
  *
  */
-bool bTimeIsValid(Time *pstTime);
+bool bTimeIsValid(STRUCT_TIME *pstTime);
 
 /**
  *
  */
-bool bTimeIsEqual(Time *pstTimeOne, Time *pstTimeTwo);
+bool bTimeIsEqual(STRUCT_TIME *pstTimeOne, STRUCT_TIME *pstTimeTwo);
 
 /**
  *
  */
-void vFormatTime(const Time *kpstTime,
+void vFormatTime(const STRUCT_TIME *kpstTime,
                  const char *kpszFmt,
                  char **szOutput);
 

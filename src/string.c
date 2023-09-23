@@ -51,3 +51,10 @@ void vRemoveEnter(char *pszStr)
   }
 }
 
+void vRemoveNewLines(char *pszStr)
+{
+  if(bStrIsEmpty(pszStr)) return;
+
+  strtok(pszStr, "\r\n");
+}
+
