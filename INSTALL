@@ -1,0 +1,4 @@
+Installation proccess of the libcutils
+
+$ sudo ./mkinstall  # Compile and install the software
+

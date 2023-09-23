@@ -1,0 +1,86 @@
+cutils
+├── AUTHORS
+├── ChangeLog
+├── INSTALL
+├── LICENSE
+├── Makefile
+├── README
+├── README.md
+├── doc
+├── include
+│   └── cutils
+│       ├── color.h
+│       ├── consts.h
+│       ├── cutils.h
+│       ├── date.h
+│       ├── dir.h
+│       ├── file.h
+│       ├── io.h
+│       ├── string.h
+│       └── time.h
+├── install.sh
+├── man
+│   └── cutils.1
+├── mk
+├── mkall
+├── mkclean
+├── mkd
+├── mkdall
+├── mkdistclean
+├── mkinstall
+├── mkstrip
+├── mktest
+├── mkuninstall
+├── src
+│   ├── color.c
+│   ├── cutils.c
+│   ├── date.c
+│   ├── dir.c
+│   ├── file.c
+│   ├── io.c
+│   ├── string.c
+│   └── time.c
+├── tests
+│   ├── file_len.c
+│   └── getstr.c
+└── uninstall.sh
+
+7 directories, 39 files
+
+AUTHORS.......: The name and email of project author
+ChangeLog.....: Changelog of project
+INSTALL.......: Installation guide
+LICENSE.......: License of software
+Makefile......: Makefile of the project
+README........: This file containing a explanation about the files of project
+README.md.....: The README of github
+color.h.......: Header file of color module
+consts.h......: Header file with constants useds in the library
+cutils.h......: Header file of cutils module
+date.h........: Header file of date module
+dir.h.........: Header file of dir module
+file.h........: Header file of file module
+io.h..........: Header file of io module
+string.h......: Header file of string module
+time.h........: Header file of time module
+install.sh....: Installation script
+cutils.1......: A man page about the library and your functions
+mk............: A make script
+mkall.........: make all script
+mkclean.......: make clean script
+mkd...........: make debug script
+mkdall........: make debug all script
+mkdistclean...: make distclean script
+mkinstall.....: make install script
+mktest........: make test script
+mkuninstall...: make uninstall script
+color.c.......: C source file content color manipulate funciotns
+cutils.c......: C source file content the 
+date.c........: C source file content date manipulate funcions
+dir.c.........: C source file content directory manipulate functions
+file.c........: C source file content file manipulate funcitons
+io.c..........: C source file content input/output funcions
+string.c......: C source file content string manipulate functions
+time.c........: C source file content time manipulation functions
+uninstall.sh..: Uninstall script of the software
+

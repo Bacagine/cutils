@@ -1,0 +1,157 @@
+.TH log 1
+.SH NAME
+log \- a Debugging C Library
+
+.SH LIBRARY
+Debugging C library
+.RI (liblog,\ \-llog)
+
+.SH SYNOPSIS
+.nf
+.B #include <cutils/cutils.h>
+.B #include <cutils/consts.h>
+.B #include <cutils/color.h>
+.B #include <cutils/io.h>
+.B #include <cutils/string.h>
+.B #include <cutils/file.h>
+.B #include <cutils/dir.h>
+.B #include <cutils/date.h>
+.B #include <cutils/time.h>
+.PP
+.B #define\ UNUSED(X)\ (void)\ X
+
+.B #define\ BLACK_STR\t     "\033[0;30m"
+.B #define\ RED_STR\t       "\033[0;31m"
+.B #define\ GREEN_STR\t     "\033[0;32m"
+.B #define\ YELLOW_STR\t    "\033[0;33m"
+.B #define\ BLUE_STR\t     "\033[0;34m"
+.B #define\ PURPLE_STR\t    "\033[0;35m"
+.B #define\ BLUE_CYAN_STR\ "\033[0;36m"
+.B #define\ WHITE_STR\t     "\033[0;37m"
+
+.B #define BLACK_BOLD_STR\t     "\033[1;30m"
+.B #define RED_BOLD_STR\t       "\033[1;31m"
+.B #define GREEN_BOLD_STR\t     "\033[1;32m"
+.B #define YELLOW_BOLD_STR\t    "\033[1;33m"
+.B #define BLUE_BOLD_STR\t      "\033[1;34m"
+.B #define PURPLE_BOLD_STR\t    "\033[1;35m"
+.B #define BLUE_CYAN_BOLD_STR\t "\033[1;36m"
+.B #define WHITE_BOLD_STR\t     "\033[1;37m"
+
+.B #define END_COLOR_STR\t "\033[m"
+
+.B typedef\ enum\ TextColors
+.B {
+.B\t\   BLACK,
+.B\t\   RED,
+.B\t\   GREEN,
+.B\t\   YELLOW,
+.B\t\   BLUE,
+.B\t\   PURPLE,
+.B\t\   CYAN_BLUE,
+.B\t\   WHITE
+.B }\ TextColors;
+
+.B typedef\ struct\ Date
+.B {
+.B\t\   int\ iDay;
+.B\t\   int\ iMonth;
+.B\t\   int\ iYear;
+.B }\ Date,\ *PDate;
+
+.B typedef\ struct\ Time
+.B {
+.B\t\   int\ iHour;
+.B\t\   int\ iMinute;
+.B\t\   int\ iSecond;
+.B }\ Time,\ *PTime;
+
+.B static\ const\ char\ *kszNormalColors[]\ =\ {
+.B\t\   BLACK_STR,\ RED_STR,\ GREEN_STR,
+.B\t\   YELLOW_STR,\ BLUE_STR,\ PURPLE_STR,
+.B\t\   BLUE_CYAN_STR,\ WHITE_STR,\ NULL
+.B };
+
+.B static\ const\ char\ *kszBoldColors[]\ =\ {
+.B\t\   BLACK_BOLD_STR,\ RED_BOLD_STR,\ GREEN_BOLD_STR, 
+.B\t\   YELLOW_BOLD_STR,\ BLUE_BOLD_STR,\ PURPLE_BOLD_STR, 
+.B\t\   BLUE_CYAN_BOLD_STR,\ WHITE_BOLD_STR,\ NULL
+.B };
+
+.B const\ char\ *kpszWeekDays[]\ =\ {
+.B\t\  "Sunday"\ \ \ , "Monday"\ \ \ ,\ "Tuesday",
+.B\t\  "Wednesday",\ "Thursday",\ "Friday",
+.B\t\  "Saturday"\ ,\ NULL
+.B };
+
+.B const\ char\ *kpszMonths[]\ =\ {
+.B\t\  "January",\ "February",\ "March",
+.B\t\  "April"\ \ ,\ "May"\ \ \ \ \ ,\ "June",
+.B\t\  "July"\ \ \ ,\ "August"\ \ ,\ "Setember",
+.B\t\  "October",\ "November",\ "December", 
+.B\t\  NULL
+.B };
+
+.B bool\ bTerminalSupportColors(void)
+.B bool\ bUserIsRoot(void)
+
+.B void\ vMakeColoredText(char\ *pszColoredStr,
+.B\t\t\t\t\t\            const\ char\ *kpszStr,
+.B\t\t\t\t\t\            const\ bool\ bBold,
+.B\t\t\t\t\t\            const\ TextColors\ eTextColors)
+.B bool\ bPrintColored(const\ TextColors\ eTextColors,
+.B\t\t\t\t\ \ \      const\ bool\ bBold,
+.B\t\t\t\t\ \ \      const\ char\ *kpszFmt,\ ...)
+
+.B void\ vFgets(char\ *szString,\ int\ iLength,\ FILE\ *fpStream)
+
+.B bool\ bStrIsEmpty(const\ char\ *kpszStr)
+.B void\ szStrUpper(char\ *szDest,\ char\ *pszStrLower)
+.B void\ szStrLower(char\ *szDest,\ char\ *pszStrUpper)
+.B bool\ bTerminalSupportColors(void)
+.B void\ vRemoveEnter(char\ *pszStr)
+ 
+.B bool\ bFileExist(const\ char\ *kpszFileName)
+.B bool\ bOpenFile(FILE\ **fppFile,\ const\ char\ *kpszFileName,\ const\ char\ *pkszMode)
+.B bool\ bCloseFile(FILE\ **ppfFile)
+.B bool\ bRemoveFile(const\ char\ *kpszFileName)
+.B long\ lGetFileLen(FILE\ *fpFile,\ const\ char\ *kpszFileName)
+ 
+.B bool\ bPathIsDir(const\ char\ *kpszPath)
+.B bool\ bOpenDir(DIR\ **ppDir,\ const\ char\ *kpszDirName)
+\".B void\ vListDir(DIR\ *pDir)
+\".B void\ vTreeDir(DIR\ *pDir)
+.B bool\ bCloseDir(DIR\ **ppDir)
+.B int\ iMkDir(const\ char\ *kpszDirName,
+.B\t\t\t       const\ int\ iUmask)
+.B bool\ bRmDir(const char *kpszDirName)
+ 
+.B bool bYearIsLeapYear(int iYear)
+.B bool bDateIsValid(Date *pstDate)
+.B bool bDatesIsEqual(Date *pstDateOne, Date *pstDateTwo)
+.B void vFormatDate(const Date *kpstDate,
+.B\t\t\t\t\         const char *kpszFmt,
+.B\t\t\t\t\         char **szOutput)
+
+.B bool\ bTimeIsValid(Time\ *pstTime)
+.B bool\ bTimeIsEqual(Time\ *pstTimeOne,\ Time\ *pstTimeTwo)
+.B void\ vFormatTime(const\ Time\ *kpstTime,
+.B\t\t\t\t\                 const\ char\ *kpszFmt,
+.B\t\t\t\t\                 char\ **szOutput)
+
+.SH DESCRIPTION
+This is a Util C Library developed by Gustavo Bacagine. It is used in personal Bacagine C programs, but you can use this library in your programs too.
+
+This is a free software licensed under the terms of the GPL3. You can should have received the copy of GLP3 license, if you don't have a copy, get the license at this link: <https://www.gnu.org/licenses/gpl-3.0.html>
+
+.SH USAGE\ EXAMPLES
+You can see a usage examples of how to use this library at the github of the project at this link: <https://github.com/Bacagine/cutils>
+
+.SH BUGS
+.PP
+For reporting bugs, send a email to <gustavo.bacagine@protonmail.com>
+
+.SH AUTHOR
+.PP
+Gustavo Bacagine <gustavo.bacagine@protonmail.com>
+

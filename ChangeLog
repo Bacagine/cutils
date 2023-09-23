@@ -1,0 +1,10 @@
+ChangLog of libcutils
+
+*-------*
+| v 1.0 |
+*-------*
+
+22/09/2023 - Created the man page of the library
+20/09/2023 - Implementing the first functions
+19/09/2023 - Creating the first .h files
+
