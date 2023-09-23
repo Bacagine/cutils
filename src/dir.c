@@ -91,14 +91,11 @@ bool bRmDir(const char *kpszDirName)
 #else
 bool bPathIsDir(const char *kpszPath)
 {
-    return true;
-
+  return true;
 }
 
 bool bOpenDir(DIR **ppDir, const char *kpszDirName)
 {
-
-
   return true;
 }
 
@@ -114,21 +111,18 @@ void vTreeDir(DIR *pDir)
 
 bool bCloseDir(DIR **ppDir)
 {
-
-    return true;
-
+  return true;
 }
 
 int iMkDir(const char *kpszDirName,
            const int iUmask)
 {
-
   return 0;
 }
 
 bool bRmDir(const char *kpszDirName)
 {
- 
   return true;
 }
 #endif
+

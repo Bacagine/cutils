@@ -9,6 +9,7 @@
  */
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <math.h>
 #include "cutils/cutils.h"
 #include "cutils/file.h"
@@ -34,6 +35,8 @@ int main(int argc, char **argv)
   if(!bFileExist(pszFileName))
   {
     fprintf(stderr, "E: %s no such file or directory!\n", pszFileName);
+
+    exit(EXIT_FAILURE);
   }
   
   printf("The makefile have %.2lf KB\n", dByte2KiloByte(lGetFileLen(fpFile, pszFileName)));

@@ -62,6 +62,11 @@ typedef enum TextColors
 } TextColors;
 
 /**
+ * Check if your terminal have support a colored text
+ */
+bool bTerminalSupportColors(void);
+
+/**
  * Create a colored text
  */
 void vMakeColoredText(char *pszColoredStr,

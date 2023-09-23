@@ -73,11 +73,15 @@ install: all
 ifndef _WIN32
 	./install.sh
 else
-	./install_windows.sh
+	./install_windows.bat
 endif
 
 uninstall:
+ifdef _WIN32
 	./uninstall.sh
+else
+	./uninstall_windows.bat
+endif
 
 test: all $(BINDIR)
 	$(CC) -o $(BINDIR)/file_len $(TESTDIR)/file_len.c $(CFLAGS) $(LDFLAGS) -lm -lcutils

@@ -111,7 +111,9 @@ bool bDatesIsEqual(STRUCT_DATE *pstDateOne, STRUCT_DATE *pstDateTwo)
 
   return false;
 }
-ENUM_OTPFMT eMatchOutputFormat(const char *kpszFmt){
+
+ENUM_DATE_FMT eMatchDateOutputFormat(const char *kpszFmt)
+{
   if ( bStrIsEmpty(kpszFmt) )
     return atoi(kpszDateFormat[FMTERROR]);
 
@@ -136,30 +138,33 @@ void vFormatDate(const STRUCT_DATE *kpstDate,
                  char **szOutput,
                  char *pchDlm)
 {
-  ENUM_OTPFMT eOtpFmt;
+  ENUM_DATE_FMT eDateFmt;
 
   if( *szOutput == NULL || bStrIsEmpty(pchDlm) ) 
+  {
     return;
+  }
 
-  switch ((eOtpFmt = eMatchOutputFormat(kpszFmt))){
+  switch ((eDateFmt = eMatchDateOutputFormat(kpszFmt)))
+  {
     case DDMMAAAA:
     case DDMMAA:
-      sprintf(*szOutput, 
-    "%02d%c%02d%c%0*d",
-        kpstDate->iDay,
-        *pchDlm,
-        kpstDate->iMonth,
-        *pchDlm,
-        eOtpFmt == DDMMAA ? 2 : 4,
-        eOtpFmt == DDMMAA ? kpstDate->iYear%100 : kpstDate->iYear
+      sprintf(*szOutput,
+          "%02d%c%02d%c%0*d",
+          kpstDate->iDay,
+          *pchDlm,
+          kpstDate->iMonth,
+          *pchDlm,
+          eDateFmt == DDMMAA ? 2 : 4,
+          eDateFmt == DDMMAA ? kpstDate->iYear%100 : kpstDate->iYear
       );
       break;    
     case AAAAMMDD:
     case AAMMDD:
      sprintf(*szOutput, 
-    "%0*d%c%02d%c%02d",
-        eOtpFmt == AAMMDD ? 2 : 4 ,
-        eOtpFmt == AAMMDD ? kpstDate->iYear%100 : kpstDate->iYear,
+        "%0*d%c%02d%c%02d",
+        eDateFmt == AAMMDD ? 2 : 4 ,
+        eDateFmt == AAMMDD ? kpstDate->iYear%100 : kpstDate->iYear,
         *pchDlm,
         kpstDate->iMonth,
         *pchDlm,
@@ -169,13 +174,13 @@ void vFormatDate(const STRUCT_DATE *kpstDate,
     case MMDDAAAA:
     case MMDDAA:
      sprintf(*szOutput, 
-    "%02d%c%02d%c%0*d",
+        "%02d%c%02d%c%0*d",
         kpstDate->iMonth,
         *pchDlm,
         kpstDate->iDay,
         *pchDlm,
-        eOtpFmt == MMDDAA ? 2 : 4,
-        eOtpFmt == MMDDAA ? kpstDate->iYear%100 : kpstDate->iYear
+        eDateFmt == MMDDAA ? 2 : 4,
+        eDateFmt == MMDDAA ? kpstDate->iYear%100 : kpstDate->iYear
       );
       break;
     case FMTERROR:

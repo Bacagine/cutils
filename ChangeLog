@@ -4,6 +4,14 @@ ChangLog of libcutils
 | v 1.0 |
 *-------*
 
+23/09/2023 - rpiazza change the function vRemoveEnter to vRemoveLines
+23/09/2023 - rpiazza added now functions and enum in modules color, date,
+string
+23/09/2023 - repiazza change the name of structures and enums to Hungarian
+Notation style
+23/09/2023 - repiazza added new date formates
+23/09/2023 - repiazza added conpilation windows scripts
+
 22/09/2023 - Created the man page of the library
 20/09/2023 - Implementing the first functions
 19/09/2023 - Creating the first .h files

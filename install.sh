@@ -27,7 +27,7 @@ gzip ./man/cutils.1
 gzip ./ChangeLog
 gzip ./LICENSE
 gzip ./AUTHORS
-#gzip ./NEWS
+gzip ./NEWS
 gzip ./README
 gzip ./INSTALL
 

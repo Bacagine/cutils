@@ -21,33 +21,11 @@
 #include <stdbool.h>
 
 const char *kpszDateFormat[8] = {
-                                  "ddmmaa",
-                                  "ddmmaaaa",
-                                  "aaaammdd",
-                                  "aammdd",
-                                  "mmddaaaa",
-                                  "mmddaa",
-                                  "-99"
-                                };
-// const char *kpszDDMMAA  = "ddmmaa";
-// const char *kpszDDMMAAAA= "ddmmaaaa";
-// const char *kpszAAAAMMDD= "aaaammdd";
-// const char *kpszAAMMDD  = "aammdd";
-// const char *kpszMMDDAAAA= "mmddaaaa";
-// const char *kpszMMDDAA  = "mmddaa";
-// const char *kpszERROR   = "-99";
-
-typedef enum ENUM_OTPFMT{
-  DDMMAA=0,
-  DDMMAAAA,
-  AAAAMMDD,
-  AAMMDD,
-  MMDDAAAA,
-  MMDDAA,
-  FMTERROR, 
-}ENUM_OTPFMT;
-
-ENUM_OTPFMT eMatchOutputFormat(const char *kpszFmt);
+ "ddmmaa"  , "ddmmaaaa",
+ "aaaammdd", "aammdd",
+ "mmddaaaa", "mmddaa",
+ "-99"
+};
 
 /**
  * This structure 
@@ -60,6 +38,16 @@ typedef struct STRUCT_DATE
   int iMonth;
   int iYear;
 } STRUCT_DATE, *PSTRUCT_DATE;
+
+typedef enum ENUM_DATE_FMT{
+  DDMMAA,
+  DDMMAAAA,
+  AAAAMMDD,
+  AAMMDD,
+  MMDDAAAA,
+  MMDDAA,
+  FMTERROR, 
+} ENUM_DATE_FMT;
 
 /**
  * Week days
@@ -104,6 +92,11 @@ void vFormatDate(const STRUCT_DATE *kpstDate,
                  const char *kpszFmt,
                  char **szOutput,
                  char *pchDlm);
+
+/**
+ * Return the format was used in kpszFmt
+ */
+ENUM_DATE_FMT eMatchDateOutputFormat(const char *kpszFmt);
 
 #endif /* _CUTILS_DATE_H_  */
 

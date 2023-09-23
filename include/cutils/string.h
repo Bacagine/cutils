@@ -9,37 +9,31 @@
  */
 
 #ifndef _CUTILS_STRING_H_
-  #define _CUTILS_STRING_H_
+#define _CUTILS_STRING_H_
 
-  #include <ctype.h>
-  #include <string.h>
-  #include <stdbool.h>
+#include <ctype.h>
+#include <string.h>
+#include <stdbool.h>
 
-  /**
-   * Check if a string is empty
-   */
-  bool bStrIsEmpty(const char *kpszStr);
+/**
+ * Check if a string is empty
+ */
+bool bStrIsEmpty(const char *kpszStr);
 
-  /**
-   * 
-   */
-  void szStrUpper(char *szDest, char *pszStrLower);
+/**
+ * Save a upper pszStrLower in szDest
+ */
+void szStrUpper(char *szDest, char *pszStrLower);
 
-  /**
-   * 
-   */
-  void szStrLower(char *szDest, char *pszStrUpper);
+/**
+ * Save a lower pszStrUpper in szDest
+ */
+void szStrLower(char *szDest, char *pszStrUpper);
 
-  /**
-   * Check if your terminal have support a colored text
-   */
-  bool bTerminalSupportColors(void);
-
-  /**
-   * Remove the '\n' character of a string
-   */
-  void vRemoveEnter(char *pszStr);
-  void vRemoveNewLines(char *pszStr);
+/**
+ * Remove the '\n' character of a string
+ */
+void vRemoveNewLines(char *pszStr);
 
 #endif /* _CUTILS_STRING_H_ */
 
