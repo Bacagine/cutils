@@ -1,9 +1,8 @@
 # CUTILS
 
-My personal C util library for my C/C++ programs
+My personal C utilities library for my C/C++ programs
 
 To better understand my codes, read the README.md at [this link](https://github.com/Bacagine/Bacagine)
-
 
 # How to use?
 
