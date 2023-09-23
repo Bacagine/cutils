@@ -80,8 +80,8 @@ uninstall:
 	./uninstall.sh
 
 test: all $(BINDIR)
-	$(CC) -o $(BINDIR)/file_len $(TESTDIR)/file_len.c $(CFLAGS) $(LDFLAGS) -lm -llibcutils
-	$(CC) -o $(BINDIR)/getstr $(TESTDIR)/getstr.c $(CFLAGS) $(LDFLAGS) -lm -llibcutils
+	$(CC) -o $(BINDIR)/file_len $(TESTDIR)/file_len.c $(CFLAGS) $(LDFLAGS) -lm -lcutils
+	$(CC) -o $(BINDIR)/getstr $(TESTDIR)/getstr.c $(CFLAGS) $(LDFLAGS) -lm -lcutils
 
 distclean: clean
 	rm -rvf $(LIBDIR)
