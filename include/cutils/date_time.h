@@ -39,7 +39,15 @@ typedef struct STRUCT_DATE
   int iYear;
 } STRUCT_DATE, *PSTRUCT_DATE;
 
-typedef enum ENUM_DATE_FMT{
+typedef struct STRUCT_TIME
+{
+  int iHour;
+  int iMinute;
+  int iSecond;
+} STRUCT_TIME, *PSTRUCT_TIME;
+
+typedef enum ENUM_DATE_FMT
+{
   DDMMAA,
   DDMMAAAA,
   AAAAMMDD,
@@ -98,5 +106,21 @@ void vFormatDate(const STRUCT_DATE *kpstDate,
  */
 ENUM_DATE_FMT eMatchDateOutputFormat(const char *kpszFmt);
 
+/**
+ *
+ */
+bool bTimeIsValid(STRUCT_TIME *pstTime);
+
+/**
+ *
+ */
+bool bTimeIsEqual(STRUCT_TIME *pstTimeOne, STRUCT_TIME *pstTimeTwo);
+
+/**
+ *
+ */
+void vFormatTime(const STRUCT_TIME *kpstTime,
+                 const char *kpszFmt,
+                 char **szOutput);
 #endif /* _CUTILS_DATE_H_  */
 
