@@ -10,7 +10,7 @@
 
 #include <stdlib.h>
 #include "cutils/date.h"
-#include "cutils/string.h"
+#include "cutils/str.h"
 
 bool bYearIsLeapYear(int iYear)
 {

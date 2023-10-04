@@ -10,7 +10,7 @@
 
 #include <stdio.h>
 #include "cutils/cutils.h"
-#include "cutils/string.h"
+#include "cutils/str.h"
 
 bool bTerminalSupportColors(void)
 {

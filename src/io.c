@@ -10,7 +10,7 @@
 
 #include <stdio.h>
 #include "cutils/cutils.h"
-#include "cutils/string.h"
+#include "cutils/str.h"
 #include "cutils/io.h"
 
 void vFgets(char *szString, int iLength, FILE *fpStream)

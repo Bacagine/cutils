@@ -10,6 +10,7 @@
 
 #include <stdio.h>
 #include "cutils/cutils.h"
+#include "cutils/str.h"
 
 bool bStrIsEmpty(const char *kpszStr)
 {
