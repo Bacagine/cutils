@@ -78,6 +78,21 @@ const char *kpszMonths[] = {
 };
 
 /**
+ * 
+ */
+void vGetCurrentDate(PSTRUCT_DATE *ppstDate);
+
+/**
+ * 
+ */
+void vGetCurrentTime(PSTRUCT_TIME *ppstTime);
+
+/**
+ * Save the current date in ppstDate and current time in ppstTime.
+ */
+void vGetCurrentDateTime(PSTRUCT_DATE *ppstDate, PSTRUCT_TIME *ppstTime);
+
+/**
  * Check if a year is a leap year.
  */
 bool bYearIsLeapYear(int iYear);
@@ -98,8 +113,13 @@ bool bDatesIsEqual(STRUCT_DATE *pstDateOne, STRUCT_DATE *pstDateTwo);
  */
 void vFormatDate(const STRUCT_DATE *kpstDate,
                  const char *kpszFmt,
-                 char **szOutput,
+                 char *szOutput,
                  char *pchDlm);
+
+/**
+ * Print date in specific format
+ */
+void vPrintDate(PSTRUCT_DATE pstDate, const char *kpszFmt);
 
 /**
  * Return the format was used in kpszFmt
@@ -121,6 +141,20 @@ bool bTimeIsEqual(STRUCT_TIME *pstTimeOne, STRUCT_TIME *pstTimeTwo);
  */
 void vFormatTime(const STRUCT_TIME *kpstTime,
                  const char *kpszFmt,
-                 char **szOutput);
+                 char *szOutput);
+
+/**
+ * Print time in specific format
+ */
+void vPrintTime(PSTRUCT_TIME pstTime, const char *kpszFmt);
+
+/**
+ * Print date and time in specific format
+ */
+void vPrintDateTime(PSTRUCT_DATE pstDate,
+                    const char *kpszDateFmt,
+                    PSTRUCT_TIME pstTime,
+                    const char *kpszTimeFmt);
+
 #endif /* _CUTILS_DATE_H_  */
 

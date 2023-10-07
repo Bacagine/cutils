@@ -12,6 +12,39 @@
 #include "cutils/date_time.h"
 #include "cutils/str.h"
 
+void vGetCurrentDate(PSTRUCT_DATE *ppstDate)
+{
+  time_t tSeconds = time(NULL);
+  struct tm *pstCurrentDateTime = localtime(&tSeconds);
+
+  (*ppstDate)->iDay = pstCurrentDateTime->tm_mday;
+  (*ppstDate)->iMonth = pstCurrentDateTime->tm_mon + 1;
+  (*ppstDate)->iYear = pstCurrentDateTime->tm_year + 1900;
+}
+
+void vGetCurrentTime(PSTRUCT_TIME *ppstTime)
+{
+  time_t tSeconds = time(NULL);
+  struct tm *pstCurrentDateTime = localtime(&tSeconds);
+
+  (*ppstTime)->iHour = pstCurrentDateTime->tm_hour;
+  (*ppstTime)->iMinute = pstCurrentDateTime->tm_min;
+  (*ppstTime)->iSecond = pstCurrentDateTime->tm_sec;
+}
+
+void vGetCurrentDateTime(PSTRUCT_DATE *ppstDate, PSTRUCT_TIME *ppstTime)
+{
+  /**
+   * Saving date informations
+   */
+  vGetCurrentDate(ppstDate);
+
+  /**
+   * Saving time informations
+   */
+  vGetCurrentTime(ppstTime);
+}
+
 bool bYearIsLeapYear(int iYear)
 {
   if(iYear % 4 == 0)
@@ -135,12 +168,12 @@ ENUM_DATE_FMT eMatchDateOutputFormat(const char *kpszFmt)
 
 void vFormatDate(const STRUCT_DATE *kpstDate,
                  const char *kpszFmt,
-                 char **szOutput,
+                 char *szOutput,
                  char *pchDlm)
 {
   ENUM_DATE_FMT eDateFmt;
 
-  if( *szOutput == NULL || bStrIsEmpty(pchDlm) ) 
+  if( szOutput == NULL || bStrIsEmpty(pchDlm) ) 
   {
     return;
   }
@@ -149,7 +182,7 @@ void vFormatDate(const STRUCT_DATE *kpstDate,
   {
     case DDMMAAAA:
     case DDMMAA:
-      sprintf(*szOutput,
+      sprintf(szOutput,
           "%02d%c%02d%c%0*d",
           kpstDate->iDay,
           *pchDlm,
@@ -161,7 +194,7 @@ void vFormatDate(const STRUCT_DATE *kpstDate,
       break;    
     case AAAAMMDD:
     case AAMMDD:
-     sprintf(*szOutput, 
+     sprintf(szOutput, 
         "%0*d%c%02d%c%02d",
         eDateFmt == AAMMDD ? 2 : 4 ,
         eDateFmt == AAMMDD ? kpstDate->iYear%100 : kpstDate->iYear,
@@ -173,7 +206,7 @@ void vFormatDate(const STRUCT_DATE *kpstDate,
       break;
     case MMDDAAAA:
     case MMDDAA:
-     sprintf(*szOutput, 
+     sprintf(szOutput, 
         "%02d%c%02d%c%0*d",
         kpstDate->iMonth,
         *pchDlm,
@@ -185,9 +218,20 @@ void vFormatDate(const STRUCT_DATE *kpstDate,
       break;
     case FMTERROR:
     default:
-      *szOutput = NULL;
+      szOutput = NULL;
       return;
   }
+}
+
+void vPrintDate(PSTRUCT_DATE pstDate, const char *kpszFmt)
+{
+  char szOutput[256];
+
+  memset(szOutput, 0, sizeof(szOutput));
+
+  vFormatDate(pstDate, kpszFmt, szOutput, "/");
+
+  puts(szOutput);
 }
 
 bool bTimeIsValid(STRUCT_TIME *pstTime)
@@ -224,20 +268,51 @@ bool bTimeIsEqual(STRUCT_TIME *pstTimeOne, STRUCT_TIME *pstTimeTwo)
 
 void vFormatTime(const STRUCT_TIME *kpstTime,
                  const char *kpszFmt,
-                 char **szOutput)
+                 char *szOutput)
 {
   if(!strcmp(kpszFmt, "hh:mm"))
   {
-    sprintf(*szOutput, "%02dh:%02dmin", kpstTime->iHour,
-                                        kpstTime->iMinute);
+    sprintf(szOutput, "%02dh:%02dmin", kpstTime->iHour,
+                                       kpstTime->iMinute);
+    return;
   }
 
   if(!strcmp(kpszFmt, "hh:mm:ss"))
   {
-    sprintf(*szOutput, "%02dh:%02dmin:%02d", kpstTime->iHour,
-                                             kpstTime->iMinute,
-                                             kpstTime->iSecond);
+    sprintf(szOutput, "%02dh:%02dmin:%02d", kpstTime->iHour,
+                                            kpstTime->iMinute,
+                                            kpstTime->iSecond);
+    return;
   }
 
-  *szOutput = NULL;
+  szOutput = NULL;
 }
+
+void vPrintTime(PSTRUCT_TIME pstTime, const char *kpszFmt)
+{
+  char szOutput[256];
+
+  memset(szOutput, 0, sizeof(szOutput));
+
+  vFormatTime(pstTime, kpszFmt, szOutput);
+  
+  puts(szOutput);
+}
+
+void vPrintDateTime(PSTRUCT_DATE pstDate,
+                    const char *kpszDateFmt,
+                    PSTRUCT_TIME pstTime,
+                    const char *kpszTimeFmt)
+{
+  char szDateOutput[256];
+  char szTimeOutput[256];
+
+  memset(szDateOutput, 0, sizeof(szDateOutput));
+  memset(szTimeOutput, 0, sizeof(szTimeOutput));
+
+  vFormatDate(pstDate, kpszDateFmt, szDateOutput, "/");
+  vFormatTime(pstTime, kpszTimeFmt, szTimeOutput);
+
+  printf("%s %s\n", szDateOutput, szTimeOutput);
+}
+
