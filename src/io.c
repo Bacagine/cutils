@@ -21,7 +21,3 @@ void vFgets(char *szString, int iLength, FILE *fpStream)
   vRemoveNewLines(szString);
 }
 
-
-
-
-

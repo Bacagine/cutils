@@ -13,12 +13,11 @@ cutils
 │       ├── color.h
 │       ├── consts.h
 │       ├── cutils.h
-│       ├── date.h
+│       ├── date_time.h
 │       ├── dir.h
 │       ├── file.h
 │       ├── io.h
-│       ├── string.h
-│       └── time.h
+│       └── str.h
 ├── install.sh
 ├── man
 │   └── cutils.1
@@ -39,18 +38,21 @@ cutils
 ├── src
 │   ├── color.c
 │   ├── cutils.c
-│   ├── date.c
+│   ├── date_time.c
 │   ├── dir.c
 │   ├── file.c
 │   ├── io.c
-│   ├── string.c
-│   └── time.c
+│   └── str.c
 ├── tests
+│   ├── br_states.c
+│   ├── cnpj.c
+│   ├── cpf.c
 │   ├── file_len.c
-│   └── getstr.c
+│   ├── getstr.c 
+│   └── usa_states.c
 └── uninstall.sh
 
-7 directories, 44 files
+7 directories, 46 files
 
 AUTHORS.......: The name and email of project author
 ChangeLog.....: Changelog of project
@@ -63,12 +65,11 @@ README.md.....: The README of github
 color.h.......: Header file of color module
 consts.h......: Header file with constants useds in the library
 cutils.h......: Header file of cutils module
-date.h........: Header file of date module
+date_time.h...: Header file of date and time module
 dir.h.........: Header file of dir module
 file.h........: Header file of file module
 io.h..........: Header file of io module
-string.h......: Header file of string module
-time.h........: Header file of time module
+str.h.........: Header file of string module
 install.sh....: Installation script
 cutils.1......: A man page about the library and your functions
 mk............: A make script
@@ -87,13 +88,16 @@ mktest_windows: make test script for windows
 mkuninstall...: make uninstall script
 color.c.......: C source file content color manipulate funciotns
 cutils.c......: C source file content the 
-date.c........: C source file content date manipulate funcions
+date_time.c...: C source file content date and time manipulate funcions
 dir.c.........: C source file content directory manipulate functions
 file.c........: C source file content file manipulate funcitons
 io.c..........: C source file content input/output funcions
-string.c......: C source file content string manipulate functions
-time.c........: C source file content time manipulation functions
+str.c.........: C source file content string manipulate functions
 uninstall.sh..: Uninstall script of the software
+br_states.c...: Show the name of Brazil states
+cnpj.c........: Check if a CNPJ is valid
+cpf.c.........: Check if a CPF is valid
 file_len.c....: Test to file module
 getstr.c......: Test to io module
+usa_states.c..: Show the name of USA states.
 

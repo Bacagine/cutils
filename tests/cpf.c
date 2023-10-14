@@ -1,3 +1,13 @@
+/**
+ * cpf.c
+ *
+ * Written by Gustavo Bacagine <gustavo.bacagine@prtonmail.com>
+ *
+ * Description: Check if a CPF is valid.
+ *
+ * Date: 14/10/2023
+ */
+
 #include <stdio.h>
 #include "cutils/cutils.h"
 #include "cutils/io.h"
@@ -23,7 +33,7 @@ int main(int argc, char **argv)
   {
     printf("The CPF \"%s\" is invalid\n", szCPF);
   }
-  
 
   return 0;
 }
+

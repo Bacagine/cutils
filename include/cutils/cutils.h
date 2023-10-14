@@ -51,39 +51,6 @@
  *                                                                            *
  ******************************************************************************/
 
-#ifdef BR_COMPILATION
-/**
- * Enum that represents the Brazilian states.
- */
-typedef enum ENUM_UF
-{
-  AC, AL, AP, AM,
-  BA, CE, DF, ES,
-  GO, MA, MT, MS,
-  MG, PA, PB, PR,
-  PE, PI, RJ, RN,
-  RS, RO, RR, SC,
-  SP, SE, TO
-} ENUM_UF, *PENUM_UF;
-#elif USA_COMPILATION
-/**
- * Structure that represents the USA states.
- */
-typedef enum ENUM_STATES
-{
-  AL, AK, AZ, AR, CA,
-  NC, SC, CO, CT, ND,
-  SD, DE, FL, GA, HI,
-  ID, IL, IN, IA, KS,
-  KY, LA, ME, MD, MA,
-  MI, MN, MS, MO, MT,
-  NE, NV, NH, NJ, NM,
-  NY, OH, OK, OR, PA,
-  RI, TN, TX, UT, VT,
-  VA, WV, WA, WI, WY
-} ENUM_STATES, *PENUM_STATES;
-#endif
-
 /**
  * Structure that represents a address
  */
@@ -95,11 +62,8 @@ typedef struct STRUCT_ADDRESS
   char szNeighborhood[64];
   char szCity[64];
   char szState[64];
-#ifdef BR_COMPILATION
   char szCEP[64]; /* In Brazil */
-#elif USA_COMPILATION
   char szZIP[64]; /* In USA    */
-#endif
   char szCountry[64];
 } STRUCT_ADDRESS, *PSTRUCT_ADDRESS;
 
@@ -124,11 +88,8 @@ typedef struct STRUCT_NATURAL_PERSON
   char szFirstName[64];
   char szMiddleName[64];
   char szLastName[64];
-#ifdef BR_COMPILATION
   char szCPF[64]; /* In Brazil */
-#elif USA_COMPILATION
   char szSSN[64]; /* In USA    */
-#endif
   STRUCT_DATE stBornDate;
   int iAge;
   char szNationality[64];
@@ -139,11 +100,8 @@ typedef struct STRUCT_NATURAL_PERSON
 typedef struct STRUCT_JURIDICAL_PERSON
 {
   STRUCT_PERSON stPersonInfo;
-#ifdef BR_COMPILATION
   char szCNPJ[64]; /* In Brazil */
-#elif USA_COMPILATION
   char szEIN[64];  /* In USA    */
-#endif
   STRUCT_DATE stIncorporationDate;
   int iTimeInOperation;
   char szLegalForm[64];
@@ -154,11 +112,17 @@ typedef struct STRUCT_LOGIN
   char szUser[64];
   char szPasswd[64];
 } STRUCT_LOGIN, *PSTRUCT_LOGIN;
+
 /******************************************************************************
  *                                                                            *
  *                     Global variables and constants                         *
  *                                                                            *
  ******************************************************************************/
+
+extern const char *kpszShortUFs[28];
+extern const char *kpszLongUFs[28];
+extern const char *kpszShortUSA_States[51];
+extern const char *kpszLongUSA_States[51];
 
 /******************************************************************************
  *                                                                            *
@@ -194,7 +158,7 @@ bool bEIN_IsValid(const char *pszEIN);
 /**
  * Check if the gender is valid (M or F)
  */
-bool bGenderIsValid(const char chSex);
+bool bSexIsValid(const char chSex);
 
 #endif /* _CUTILS_H_ */
 
