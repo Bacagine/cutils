@@ -20,9 +20,9 @@ int main(int argc, char **argv)
 
   puts("The states of USA are:");
 
-  for(ii = 0; kpszShortUSA_States[ii] != NULL; ii++)
+  for(ii = 0; gkpszShortUSA_States[ii] != NULL; ii++)
   {
-    printf("%s - (%s)\n", kpszLongUSA_States[ii], kpszShortUSA_States[ii]);
+    printf("%s - (%s)\n", gkpszLongUSA_States[ii], gkpszShortUSA_States[ii]);
   }
 
   return 0;

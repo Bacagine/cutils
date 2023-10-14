@@ -3,13 +3,13 @@
  *
  * Written by Gustavo Bacagine <gustavo.bacagine@protonmail.com>
  *  
- * Description: 
+ * Description: Date and time manipulation functions
  *
  * Date: 21/09/2023
  */
 
-#ifndef _CUTILS_DATE_H_
-#define _CUTILS_DATE_H_
+#ifndef _CUTILS_DATE_TIME_H_
+#define _CUTILS_DATE_TIME_H_
 
 #include <stdio.h>
 #include <string.h>
@@ -20,8 +20,6 @@
 #endif
 #include <stdbool.h>
 #include "consts.h"
-
-extern const char *kpszDateFormat[8];
 
 /**
  * This structure 
@@ -54,22 +52,39 @@ typedef enum ENUM_DATE_FMT
 } ENUM_DATE_FMT;
 
 /**
+ * Date formates string array
+ */
+extern const char *gkpszDateFormat[8];
+
+/**
  * Week days
  */
-extern const char *kpszWeekDays[];
+extern const char *gkpszWeekDays[];
 
 /**
- * Months of Year
+ * Brazilian week days
  */
-extern const char *kpszMonths[];
+extern const char *gkpszBR_WeekDays[];
 
 /**
- * 
+ * Months of year
+ */
+extern const char *gkpszMonths[];
+
+/**
+ * Brazilian months of year.
+ */
+extern const char *gkpszBR_Months[];
+
+/**
+ * Get the current date of the system
+ * and save in ppstDate
  */
 void vGetCurrentDate(PSTRUCT_DATE *ppstDate);
 
 /**
- * 
+ * Get the current time of the system
+ * and save in ppstTime
  */
 void vGetCurrentTime(PSTRUCT_TIME *ppstTime);
 
@@ -113,17 +128,18 @@ void vPrintDate(PSTRUCT_DATE pstDate, const char *kpszFmt);
 ENUM_DATE_FMT eMatchDateOutputFormat(const char *kpszFmt);
 
 /**
- *
+ * Check if the values of pstTime is
+ * valid
  */
 bool bTimeIsValid(STRUCT_TIME *pstTime);
 
 /**
- *
+ * Check if two times are equals
  */
 bool bTimeIsEqual(STRUCT_TIME *pstTimeOne, STRUCT_TIME *pstTimeTwo);
 
 /**
- *
+ * Save a formatted time in szOutput
  */
 void vFormatTime(const STRUCT_TIME *kpstTime,
                  const char *kpszFmt,
@@ -142,5 +158,5 @@ void vPrintDateTime(PSTRUCT_DATE pstDate,
                     PSTRUCT_TIME pstTime,
                     const char *kpszTimeFmt);
 
-#endif /* _CUTILS_DATE_H_  */
+#endif /* _CUTILS_DATE_TIME_H_ */
 

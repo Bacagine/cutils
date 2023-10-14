@@ -1,9 +1,9 @@
 /**
- * date.c
+ * date_time.c
  *
  * Written by Gustavo Bacagine <gustavo.bacagine@protonmail.com>
  *  
- * Description: 
+ * Description: Date and time manipulation functions
  *
  * Date: 21/09/2023
  */
@@ -12,24 +12,38 @@
 #include "cutils/date_time.h"
 #include "cutils/str.h"
 
-const char *kpszDateFormat[8] = {
+const char *gkpszDateFormat[8] = {
  "ddmmaa"  , "ddmmaaaa",
- "aaaammdd", "aammdd",
- "mmddaaaa", "mmddaa",
+ "aaaammdd", "aammdd"  ,
+ "mmddaaaa", "mmddaa"  ,
  "-99"
 };
 
-const char *kpszWeekDays[] = {
+const char *gkpszWeekDays[] = {
   "Sunday"   , "Monday"  , "Tuesday",
-  "Wednesday", "Thursday", "Friday",
+  "Wednesday", "Thursday", "Friday" ,
   "Saturday" , NULL
 };
 
-const char *kpszMonths[] = {
-  "January", "February", "March",
-  "April"  , "May"     , "June",
+const char *gkpszBR_WeekDays[] = {
+  "Domingo", "Segunda", "Terca", 
+  "Quarta" , "Quinta" , "Sexta", 
+  "Sabado", NULL
+};
+
+const char *gkpszMonths[] = {
+  "January", "February", "March"   ,
+  "April"  , "May"     , "June"    ,
   "July"   , "August"  , "Setember",
   "October", "November", "December", 
+  NULL
+};
+
+const char *gpkszBR_Months[] = {
+  "Janeiro", "Fevereiro", "Marco"   ,
+  "Abril"  , "Maio"     , "Junho"   ,
+  "Julho"  , "Agosto"   , "Setembro",
+  "Outubro", "Novembro" , "Dezembro",
   NULL
 };
 
@@ -169,22 +183,22 @@ bool bDatesIsEqual(STRUCT_DATE *pstDateOne, STRUCT_DATE *pstDateTwo)
 ENUM_DATE_FMT eMatchDateOutputFormat(const char *kpszFmt)
 {
   if ( bStrIsEmpty(kpszFmt) )
-    return atoi(kpszDateFormat[FMTERROR]);
+    return atoi(gkpszDateFormat[FMTERROR]);
 
-  if ( !strcasecmp(kpszFmt, kpszDateFormat[DDMMAA]) )
+  if ( !strcasecmp(kpszFmt, gkpszDateFormat[DDMMAA]) )
     return DDMMAA;
-  else if ( !strcasecmp(kpszFmt, kpszDateFormat[DDMMAAAA]) )
+  else if ( !strcasecmp(kpszFmt, gkpszDateFormat[DDMMAAAA]) )
     return DDMMAAAA;
-  else if ( !strcasecmp(kpszFmt, kpszDateFormat[AAAAMMDD]) )
+  else if ( !strcasecmp(kpszFmt, gkpszDateFormat[AAAAMMDD]) )
     return AAAAMMDD;
-  else if ( !strcasecmp(kpszFmt, kpszDateFormat[AAMMDD]  ) )
+  else if ( !strcasecmp(kpszFmt, gkpszDateFormat[AAMMDD]  ) )
     return AAMMDD;
-  else if ( !strcasecmp(kpszFmt, kpszDateFormat[MMDDAAAA]) )
+  else if ( !strcasecmp(kpszFmt, gkpszDateFormat[MMDDAAAA]) )
     return MMDDAAAA;
-  else if ( !strcasecmp(kpszFmt, kpszDateFormat[MMDDAA]  ) )
+  else if ( !strcasecmp(kpszFmt, gkpszDateFormat[MMDDAA]  ) )
     return MMDDAA;
   
-  return atoi(kpszDateFormat[FMTERROR]);
+  return atoi(gkpszDateFormat[FMTERROR]);
 }
 
 void vFormatDate(const STRUCT_DATE *kpstDate,

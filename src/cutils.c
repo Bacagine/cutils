@@ -12,7 +12,7 @@
 #include "cutils/cutils.h"
 #include "cutils/str.h"
 
-const char *kpszShortUFs[] = {
+const char *gkpszShortUFs[28] = {
   "AC", "AL", "AP", "AM",
   "BA", "CE", "DF", "ES",
   "GO", "MA", "MT", "MS",
@@ -22,17 +22,17 @@ const char *kpszShortUFs[] = {
   "SP", "SE", "TO", NULL
 };
 
-const char *kpszLongUFs[] = {
-  "Acre", "Alagoas", "Amapa", "Amazonas",
-  "Bahia", "Ceara", "Distrito Federal", "Espirito Santo",
-  "Goiais", "Maranhao", "Mato Grosso", "Mato Grosso do Sul",
-  "Minas Gerais", "Para", "Paraiba", "Parana",
-  "Pernanbuco", "Piaui", "Rio de Janeiro", "Rio Grande do Norte",
-  "Rio Grande do Sul", "Rondonia", "Roraima", "Santa Catarina",
-  "Sao Paulo", "Sergipe", "Tocantins", NULL
+const char *gkpszLongUFs[28] = {
+  "Acre"             , "Alagoas" , "Amapa"            , "Amazonas"           ,
+  "Bahia"            , "Ceara"   , "Distrito Federal" , "Espirito Santo"     ,
+  "Goiais"           , "Maranhao", "Mato Grosso"      , "Mato Grosso do Sul" ,
+  "Minas Gerais"     , "Para"    , "Paraiba"          , "Parana"             ,
+  "Pernanbuco"       , "Piaui"   , "Rio de Janeiro"   , "Rio Grande do Norte",
+  "Rio Grande do Sul", "Rondonia", "Roraima"          , "Santa Catarina"     ,
+  "Sao Paulo"        , "Sergipe" , "Tocantins"        , NULL
 };
 
-const char *kpszShortUSA_States[51] = {
+const char *gkpszShortUSA_States[51] = {
   "AL", "AK", "AZ", "AR", "CA",
   "CO", "CT", "DE", "FL", "GA",
   "HI", "ID", "IL", "IN", "IA",
@@ -46,7 +46,7 @@ const char *kpszShortUSA_States[51] = {
   NULL
 };
 
-const char *kpszLongUSA_States[51] =  {
+const char *gkpszLongUSA_States[51] =  {
   "Alabama"      , "Alaska"     , "Arizona"       , "Arkansas"     , "California",
   "Colorado"     , "Connecticut", "Delaware"      , "Florida"      , "Georgia"   ,
   "Hawaii"       , "Idaho"      , "Illinois"      , "Indiana"      , "Iowa"      ,

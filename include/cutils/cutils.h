@@ -119,10 +119,10 @@ typedef struct STRUCT_LOGIN
  *                                                                            *
  ******************************************************************************/
 
-extern const char *kpszShortUFs[28];
-extern const char *kpszLongUFs[28];
-extern const char *kpszShortUSA_States[51];
-extern const char *kpszLongUSA_States[51];
+extern const char *gkpszShortUFs[28];
+extern const char *gkpszLongUFs[28];
+extern const char *gkpszShortUSA_States[51];
+extern const char *gkpszLongUSA_States[51];
 
 /******************************************************************************
  *                                                                            *

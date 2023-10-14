@@ -4,6 +4,33 @@ ChangLog of libcutils
 | v 1.0 |
 *-------*
 
+14/10/2023 - Created the following variables:
+	extern const char *gkpszBR_WeekDays[];
+	extern const char *gkpszBR_Months[];
+
+14/10/2023 - Change the following variables to global variables:
+  extern const char *gkpszDateFormat[8];
+	extern const char *gkpszWeekDays[];
+	extern const char *gkpszMonths[];
+
+14/10/2023 - Create the following constants:
+  extern const char *gkpszShortUFs[28];
+	extern const char *gkpszLongUFs[28];
+	extern const char *gkpszShortUSA_States[51];
+	extern const char *gkpszLongUSA_States[51];
+
+14/10/2023 - Implementation of the following functions:
+	bCPF_IsValid(const char *pszCPF)
+	bCNPJ_IsValid(const char *pszCNPJ)
+	bSexIsValid(const char chSex)
+
+14/10/2023 - Created the following structures:
+  STRUCT_ADDRESS
+	STRUCT_PERSON
+  STRUCT_NATURAL_PERSON
+	STRUCT_JURIDICAL_PERSON
+	STRUCT_LOGIN
+
 23/09/2023 - rpiazza change the function vRemoveEnter to vRemoveLines
 23/09/2023 - rpiazza added now functions and enum in modules color, date,
 string
