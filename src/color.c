@@ -9,23 +9,36 @@
  */
 
 #include "cutils/color.h"
+#include "cutils/str.h"
+
+bool bTerminalSupportColors(void)
+{
+  char *szTerm = getenv("TERM");
+  
+  if(bStrIsEmpty(szTerm) || !strcmp(szTerm, "dumb"))
+  {
+    return false;
+  }
+  
+  return true;
+}
 
 void vMakeColoredText(char *pszColoredStr,
                       const char *kpszStr,
                       const bool bBold,
-                      const TextColors eTextColors)
+                      const ENUM_TEXT_COLORS eENUM_TEXT_COLORS)
 {
   if(bBold)
   {
-    sprintf(pszColoredStr, "%s%s%s", kszBoldColors[eTextColors], kpszStr, END_COLOR_STR);
+    sprintf(pszColoredStr, "%s%s%s", kszBoldColors[eENUM_TEXT_COLORS], kpszStr, END_COLOR_STR);
   }
   else
   {
-    sprintf(pszColoredStr, "%s%s%s", kszNormalColors[eTextColors], kpszStr, END_COLOR_STR);
+    sprintf(pszColoredStr, "%s%s%s", kszNormalColors[eENUM_TEXT_COLORS], kpszStr, END_COLOR_STR);
   }
 }
 
-bool bPrintColored(const TextColors eTextColors,
+bool bPrintColored(const ENUM_TEXT_COLORS eENUM_TEXT_COLORS,
                    const bool bBold,
                    const char *kpszFmt, ...)
 {
@@ -42,7 +55,7 @@ bool bPrintColored(const TextColors eTextColors,
     return false;
   }  
   
-  vMakeColoredText(szColoredStr, kpszFmt, bBold, eTextColors);
+  vMakeColoredText(szColoredStr, kpszFmt, bBold, eENUM_TEXT_COLORS);
   
   vfprintf(stdout, szColoredStr, args);
 

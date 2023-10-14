@@ -8,6 +8,7 @@
  * Date: 20/09/2023
  */
 
+#include "cutils/cutils.h"
 #include "cutils/dir.h"
 
 #ifndef _WIN32

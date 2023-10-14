@@ -51,6 +51,14 @@ else
 	CFLAGS += -O3
 endif
 
+ifdef BR_COMPILATION
+	CFLAGS += -DBR_COMPILATION
+endif
+
+ifdef USA_COMPILATION
+	CFLAGS += -DUSA_COMPILATION
+endif
+
 all: distclean $(OBJDIR) $(LIBDIR) $(LIB)
 
 $(LIB): $(OBJ)
@@ -86,6 +94,9 @@ endif
 test: all $(BINDIR)
 	$(CC) -o $(BINDIR)/file_len $(TESTDIR)/file_len.c $(CFLAGS) $(LDFLAGS) -lm -lcutils
 	$(CC) -o $(BINDIR)/getstr $(TESTDIR)/getstr.c $(CFLAGS) $(LDFLAGS) -lm -lcutils
+	$(CC) -o $(BINDIR)/cpf $(TESTDIR)/cpf.c $(CFLAGS) $(LDFLAGS) -lm -lcutils
+	$(CC) -o $(BINDIR)/br_compilation $(TESTDIR)/br_compilation.c $(CFLAGS) $(LDFLAGS) -lm -lcutils
+	$(CC) -o $(BINDIR)/usa_compilation $(TESTDIR)/usa_compilation.c $(CFLAGS) $(LDFLAGS) -lm -lcutils
 
 distclean: clean
 	rm -rvf $(LIBDIR)

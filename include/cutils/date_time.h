@@ -1,5 +1,5 @@
 /**
- * date.h
+ * date_time.h
  *
  * Written by Gustavo Bacagine <gustavo.bacagine@protonmail.com>
  *  
@@ -19,13 +19,9 @@
   #include <sys\timeb.h> 
 #endif
 #include <stdbool.h>
+#include "consts.h"
 
-const char *kpszDateFormat[8] = {
- "ddmmaa"  , "ddmmaaaa",
- "aaaammdd", "aammdd",
- "mmddaaaa", "mmddaa",
- "-99"
-};
+extern const char *kpszDateFormat[8];
 
 /**
  * This structure 
@@ -60,22 +56,12 @@ typedef enum ENUM_DATE_FMT
 /**
  * Week days
  */
-const char *kpszWeekDays[] = {
-  "Sunday"   , "Monday"  , "Tuesday",
-  "Wednesday", "Thursday", "Friday",
-  "Saturday" , NULL
-};
+extern const char *kpszWeekDays[];
 
 /**
  * Months of Year
  */
-const char *kpszMonths[] = {
-  "January", "February", "March",
-  "April"  , "May"     , "June",
-  "July"   , "August"  , "Setember",
-  "October", "November", "December", 
-  NULL
-};
+extern const char *kpszMonths[];
 
 /**
  * 

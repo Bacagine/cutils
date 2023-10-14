@@ -18,7 +18,6 @@
 #include <sys/stat.h>
 #include <dirent.h>
 #include <unistd.h>
-#include "cutils.h"
 
 /**
  * Check if a path is a directory

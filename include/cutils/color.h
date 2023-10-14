@@ -12,6 +12,7 @@
 #define _CUTILS_COLOR_H
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
 #include "cutils.h"
@@ -49,7 +50,7 @@ static const char *kszBoldColors[] = {
   BLUE_CYAN_BOLD_STR, WHITE_BOLD_STR, NULL
 };
 
-typedef enum TextColors
+typedef enum ENUM_TEXT_COLORS
 {
   BLACK,
   RED,
@@ -59,7 +60,7 @@ typedef enum TextColors
   PURPLE,
   CYAN_BLUE,
   WHITE
-} TextColors;
+} ENUM_TEXT_COLORS;
 
 /**
  * Check if your terminal have support a colored text
@@ -72,7 +73,7 @@ bool bTerminalSupportColors(void);
 void vMakeColoredText(char *pszColoredStr,
                       const char *kpszStr,
                       const bool bBold,
-                      const TextColors eTextColors);
+                      const ENUM_TEXT_COLORS eENUM_TEXT_COLORS);
 
 /**
  * Print a colored text in terminal
@@ -84,7 +85,7 @@ void vMakeColoredText(char *pszColoredStr,
  *  true  - Can print colored text.
  *  false - Can't print colored text.
  */
-bool bPrintColored(const TextColors eTextColors,
+bool bPrintColored(const ENUM_TEXT_COLORS eENUM_TEXT_COLORS,
                    const bool bBold,
                    const char *kpszFmt, ...);
 

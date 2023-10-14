@@ -1,9 +1,9 @@
 /**
- * cutils.h
+ * consts.h
  *
  * Written by Gustavo Bacagine <gustavo.bacagine@protonmail.com>
  *  
- * cutils header file
+ * consts header file
  *
  * Date: 20/09/2023
  */

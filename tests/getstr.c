@@ -9,7 +9,7 @@
  */
 
 #include "cutils/cutils.h"
-#include "cutils/string.h"
+#include "cutils/str.h"
 #include "cutils/io.h"
 
 int main(int argc, char **argv)

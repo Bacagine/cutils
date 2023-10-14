@@ -12,6 +12,27 @@
 #include "cutils/date_time.h"
 #include "cutils/str.h"
 
+const char *kpszDateFormat[8] = {
+ "ddmmaa"  , "ddmmaaaa",
+ "aaaammdd", "aammdd",
+ "mmddaaaa", "mmddaa",
+ "-99"
+};
+
+const char *kpszWeekDays[] = {
+  "Sunday"   , "Monday"  , "Tuesday",
+  "Wednesday", "Thursday", "Friday",
+  "Saturday" , NULL
+};
+
+const char *kpszMonths[] = {
+  "January", "February", "March",
+  "April"  , "May"     , "June",
+  "July"   , "August"  , "Setember",
+  "October", "November", "December", 
+  NULL
+};
+
 void vGetCurrentDate(PSTRUCT_DATE *ppstDate)
 {
   time_t tSeconds = time(NULL);
