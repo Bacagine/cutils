@@ -183,7 +183,28 @@ bool bCPF_IsValid(const char *pszCPF)
 
 bool bSSN_IsValid(const char *pszSSN)
 {
-  UNUSED(pszSSN);
+  int ii;
+
+  if(strlen(pszSSN) > 11 || strlen(pszSSN) < 11)
+  {
+    return false;
+  }
+
+  if(pszSSN[3] != '-' || pszSSN[6] != '-')
+  {
+    return false;
+  }
+
+  for(ii = 0; pszSSN[ii] != '\0'; ii++)
+  {
+    if(ii == 3 || ii == 6) continue;
+
+    if(!isdigit(pszSSN[ii]))
+    {
+      return false;
+    }
+  }
+  
   return true;
 }
 

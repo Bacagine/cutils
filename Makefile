@@ -87,6 +87,7 @@ test: all $(BINDIR)
 	$(CC) -o $(BINDIR)/file_len $(TESTDIR)/file_len.c $(CFLAGS) $(LDFLAGS) -lm -lcutils
 	$(CC) -o $(BINDIR)/getstr $(TESTDIR)/getstr.c $(CFLAGS) $(LDFLAGS) -lm -lcutils
 	$(CC) -o $(BINDIR)/cpf $(TESTDIR)/cpf.c $(CFLAGS) $(LDFLAGS) -lm -lcutils
+	$(CC) -o $(BINDIR)/ssn $(TESTDIR)/ssn.c $(CFLAGS) $(LDFLAGS) -lm -lcutils
 	$(CC) -o $(BINDIR)/cnpj $(TESTDIR)/cnpj.c $(CFLAGS) $(LDFLAGS) -lm -lcutils
 	$(CC) -o $(BINDIR)/br_states $(TESTDIR)/br_states.c $(CFLAGS) $(LDFLAGS) -lm -lcutils
 	$(CC) -o $(BINDIR)/usa_states $(TESTDIR)/usa_states.c $(CFLAGS) $(LDFLAGS) -lm -lcutils

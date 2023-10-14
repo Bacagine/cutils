@@ -49,10 +49,11 @@ cutils
 │   ├── cpf.c
 │   ├── file_len.c
 │   ├── getstr.c 
+│   ├── ssn.c
 │   └── usa_states.c
 └── uninstall.sh
 
-7 directories, 46 files
+7 directories, 47 files
 
 AUTHORS.......: The name and email of project author
 ChangeLog.....: Changelog of project
@@ -99,5 +100,6 @@ cnpj.c........: Check if a CNPJ is valid
 cpf.c.........: Check if a CPF is valid
 file_len.c....: Test to file module
 getstr.c......: Test to io module
+ssn.c.........: Check if a SSN is valid
 usa_states.c..: Show the name of USA states.
 
