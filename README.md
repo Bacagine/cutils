@@ -357,6 +357,8 @@ $ gcc -o cpf cpf.c -lcutils
 $ gcc -o cnpj cnpj.c -lcutils
 $ gcc -o br_states br_states.c -lcutils
 $ gcc -o usa_states usa_states.c -lcutils
+$ gcc -o ssn ssn.c -lcutils
+$ gcc -o ein ein.c -lcutils
 ```
 
 OBS: if you would like to test without installing, make sure to run the following command in your terminal:
