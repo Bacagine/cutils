@@ -1,2 +1,33 @@
+14/10/2023
+
+Implemented the following functions :
+
+  bEIN_IsValid(const char *kpszEIN)
+  bCPF_IsValid(const char *pszCPF)
+  bCNPJ_IsValid(const char *pszCNPJ)
+  bSexIsValid(const char chSex)
+
+Created the following variables:
+	extern const char *gkpszBR_WeekDays[];
+	extern const char *gkpszBR_Months[];
+
+Change the following variables to global variables:
+  extern const char *gkpszDateFormat[8];
+	extern const char *gkpszWeekDays[];
+	extern const char *gkpszMonths[];
+
+Created the following constants:
+  extern const char *gkpszShortUFs[28];
+	extern const char *gkpszLongUFs[28];
+	extern const char *gkpszShortUSA_States[51];
+	extern const char *gkpszLongUSA_States[51];
+
+Created the following structures:
+  STRUCT_ADDRESS
+	STRUCT_PERSON
+  STRUCT_NATURAL_PERSON
+	STRUCT_JURIDICAL_PERSON
+	STRUCT_LOGIN
+
 23/09/2023 - Added compilation scripts for windows
 

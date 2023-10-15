@@ -4,6 +4,8 @@ ChangLog of libcutils
 | v 1.0 |
 *-------*
 
+14/10/2023 - Implemented the function bEIN_IsValid(const char *kpszEIN)
+
 14/10/2023 - Created the following variables:
 	extern const char *gkpszBR_WeekDays[];
 	extern const char *gkpszBR_Months[];
@@ -13,7 +15,7 @@ ChangLog of libcutils
 	extern const char *gkpszWeekDays[];
 	extern const char *gkpszMonths[];
 
-14/10/2023 - Create the following constants:
+14/10/2023 - Created the following constants:
   extern const char *gkpszShortUFs[28];
 	extern const char *gkpszLongUFs[28];
 	extern const char *gkpszShortUSA_States[51];
