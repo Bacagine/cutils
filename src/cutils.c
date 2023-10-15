@@ -60,6 +60,71 @@ const char *gkpszLongUSA_States[51] =  {
   NULL
 };
 
+/**
+ * Andover      10, 12
+ * Atlanta      60, 67
+ * Austin       50, 53
+ * Brookhaven   01, 02, 
+ *              03, 04, 
+ *              05, 06, 
+ *              11, 13, 
+ *              14, 16, 
+ *              21, 22, 
+ *              23, 24, 
+ *              25, 34, 
+ *              51, 52, 
+ *              54, 55, 
+ *              56, 57, 
+ *              58, 59, 
+ *              65
+ * Cincinnati   30, 32, 35, 36, 37, 38, 61
+ * Fresno       15, 24
+ * Kansas City  40, 44
+ * Memphis      94, 95
+ * Ogden        80, 90
+ * Philadelphia 33, 39,
+ *              41, 42, 
+ *              43, 46, 
+ *              48, 62, 
+ *              63, 64, 
+ *              66, 68, 
+ *              71, 72, 
+ *              73, 74, 
+ *              75, 76, 
+ *              77, 85, 
+ *              86, 87, 
+ *              88, 91, 
+ *              92, 93, 
+ *              98, 99
+ * Internet     20, 26, 
+ *              27, 45, 
+ *              46, 47, 
+ *              81, 82, 
+ *              83, 84, 
+ *              85, 86, 
+ *              87, 88, 
+ *              92, 93
+ * SBA          31
+ *
+ * Font: https://www.irs.gov/businesses/small-businesses-self-employed/how-eins-are-assigned-and-valid-ein-prefixes
+ */
+const int gkiEIN_Prefixes[84] = {
+   1,  2,  3,  4,  5,  6, 
+  10, 11, 12, 13, 14, 15,
+  16, 20, 21, 22, 23, 24,
+  25, 26, 27, 30, 31, 32,
+  33, 34, 35, 36, 37, 38,
+  39, 40, 41, 42, 43, 44,
+  45, 46, 47, 48, 50, 51,
+  52, 53, 54, 55, 56, 57,
+  58, 59, 60, 61, 62, 63,
+  64, 65, 66, 67, 68, 71,
+  72, 73, 74, 75, 76, 77,
+  80, 81, 82, 83, 84, 85,
+  86, 87, 88, 90, 91, 92,
+  93, 94, 95, 98, 99,  0 /* 0 is the end of array */
+};
+
 bool bUserIsRoot(void)
 {
 #ifndef _WIN32
@@ -99,7 +164,7 @@ bool bCPF_IsValid(const char *pszCPF)
   /**
    * Check the quantity of digits
    */
-  if(strlen(szCPF) > 11)
+  if(strlen(szCPF) != 11)
   {
     return false;
   }
@@ -185,7 +250,7 @@ bool bSSN_IsValid(const char *pszSSN)
 {
   int ii;
 
-  if(strlen(pszSSN) > 11 || strlen(pszSSN) < 11)
+  if(strlen(pszSSN) != 11)
   {
     return false;
   }
@@ -229,7 +294,7 @@ bool bCNPJ_IsValid(const char *pszCNPJ)
     }
   }
   
-  if(strlen(szCNPJ) > 14)
+  if(strlen(szCNPJ) != 14)
   {
     return false;
   }
@@ -331,7 +396,62 @@ bool bCNPJ_IsValid(const char *pszCNPJ)
 
 bool bEIN_IsValid(const char *pszEIN)
 {
-  UNUSED(pszEIN);
+  char szEIN[64];
+  int ii;
+  int jj = 0;
+  char szEIN_Prefix[64];
+  int iEIN_Prefix = 0;
+  bool bValidPrefix = false;
+
+  memset(szEIN       , 0, sizeof(szEIN       ));
+  memset(szEIN_Prefix, 0, sizeof(szEIN_Prefix));
+  
+  if(pszEIN[2] != '-') return false;
+  
+  /**
+   * Get only numbers
+   */
+  for(ii = 0; pszEIN[ii] != '\0'; ii++)
+  {
+    if(pszEIN[ii] == '-') continue;
+    
+    szEIN[jj++] = pszEIN[ii];
+  }
+  
+  /* Verify the length */
+  if(strlen(szEIN) != 9)
+  {
+    return false;
+  }
+  
+  /**
+   * Check if the content is only numbers
+   */
+  for(ii = 0; szEIN[ii] != '\0'; ii++)
+  {
+    if(!isdigit(szEIN[ii]))
+    {
+      return false;
+    }
+  }
+  
+  /**
+   * Checking the EIN prefix
+   */
+  sprintf(szEIN_Prefix, "%d%d", szEIN[0] - '0', szEIN[1] - '0');
+  
+  iEIN_Prefix = atoi(szEIN_Prefix);
+  
+  for(ii = 0; gkiEIN_Prefixes[ii] != 0; ii++)
+  {
+    if(iEIN_Prefix == gkiEIN_Prefixes[ii])
+    {
+      bValidPrefix = true;
+    }
+  }
+  
+  if(!bValidPrefix) return false;
+
   return true;
 }
 

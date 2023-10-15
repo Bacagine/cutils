@@ -123,6 +123,7 @@ extern const char *gkpszShortUFs[28];
 extern const char *gkpszLongUFs[28];
 extern const char *gkpszShortUSA_States[51];
 extern const char *gkpszLongUSA_States[51];
+extern const int gkiEIN_Prefixes[84];
 
 /******************************************************************************
  *                                                                            *
