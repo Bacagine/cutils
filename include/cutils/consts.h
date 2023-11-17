@@ -11,7 +11,9 @@
 #ifndef _CUTILS_CONSTANTS_H_
 #define _CUTILS_CONSTANTS_H_
 
-
+#ifndef _MAX_PATH
+  #define _MAX_PATH 256
+#endif /* _MAX_PATH */
 
 #endif /* _CUTILS_CONSTANTS_H_ */
 

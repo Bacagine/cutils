@@ -22,6 +22,7 @@
 #include <stdbool.h>
 #include <stdarg.h>
 #include <errno.h>
+
 #ifndef _WIN32
   #include <time.h>
   #include <sys/utsname.h>
@@ -30,7 +31,9 @@
   #include <sys/timeb.h>
 #endif
 #include <unistd.h>
+#include "consts.h"
 #include "date_time.h"
+
 
 /******************************************************************************
  *                                                                            *
