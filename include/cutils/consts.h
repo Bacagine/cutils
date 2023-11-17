@@ -15,5 +15,9 @@
   #define _MAX_PATH 256
 #endif /* _MAX_PATH */
 
+#ifndef UNUSED
+  #define UNUSED(X) (void) X
+#endif /* UNUSED */
+
 #endif /* _CUTILS_CONSTANTS_H_ */
 
