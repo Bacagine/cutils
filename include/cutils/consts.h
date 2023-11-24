@@ -41,7 +41,7 @@
 
 #ifndef DIV
   #define DIV(A, B) A / B
-#define /* DIV */
+#endif /* DIV */
 
 #ifndef MAX
   #define MAX(A, B) ((A > B) ? (A) : (B))
