@@ -30,15 +30,17 @@ OBJ        = $(patsubst $(SRCDIR)/%.c,$(OBJDIR)/%.o,$(SRC))
 LIB        = $(LIBDIR)/$(TARGET)
 
 # Compilation flags
-LDFLAGS    = -L $(LIBDIR)
-LDLIBS     = -lm
+LDFLAGS    = -L $(LIBDIR) -lm
+LDLIBS     = 
 CFLAGS     = -I $(INCDIR) -Wall -Wextra 
+
 ifdef _WIN32
-CFLAGS     += -mwindows
-LDLIBS     += -lwinpthread
+  CFLAGS     += -mwindows
+  LDLIBS     += -lwinpthread
 else
-LDLIBS     += -pthread
+  LDLIBS     += -pthread
 endif
+
 DEBUGFLAGS = -g -O0 -DDEBUG_COMPILATION
 
 # Compiler
